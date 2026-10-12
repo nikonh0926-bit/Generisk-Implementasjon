@@ -1,4 +1,4 @@
-
+// creates a new id when any item is created
 public class GetNewId
 {
     public static int CreatedCount { get; private set; }    
@@ -7,12 +7,15 @@ public class GetNewId
         return CreatedCount++;
     }
 }
+// interface for items
+// each item MUST inherit these properties
 public interface IInventoryItem
 {
     string Name { get; }
     int Id { get; }
     
 }
+// Class for item of type: skateboard
 public class Skateboard : IInventoryItem
 {
     public string Name { get; set; }
@@ -29,6 +32,7 @@ public class Skateboard : IInventoryItem
         WheelHardness = wheelHardness;
     }
 }
+// Class for item of type: guitar
 public class Guitar : IInventoryItem
 {
     public string Name { get; set; }
@@ -45,7 +49,7 @@ public class Guitar : IInventoryItem
         StringGauge = stringGauge;
     }
 }
-
+// Class for item of type: camera
 public class Camera :IInventoryItem
 {
     public string Name { get; set; }

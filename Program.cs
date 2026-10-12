@@ -1,7 +1,4 @@
-﻿
-
-
-public static class Program
+﻿public static class Program
 {
     public static void Main(string[] args)
     {
@@ -26,8 +23,11 @@ public static class Program
         skateboards.Add(kennyMcormak);
         skateboards.Add(cruiser);
 
+        // initialize vizualisation of data
         BrukerGrensesnitt.GetUI(guitars, skateboards, cameras);
     }
+
+    // print data from a specific generic item inventory
     public static string Print<T>(Inventory<T> inventory)
         where T : IInventoryItem
     {
