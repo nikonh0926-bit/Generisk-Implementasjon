@@ -2,12 +2,12 @@
 {
     public static void Main(string[] args)
     {
-        // initialize inventory
+        // Initialize inventory
         var guitars = new Inventory<Guitar>();
         var cameras = new Inventory<Camera>();
         var skateboards = new Inventory<Skateboard>();
 
-        // seed data
+        // Seed data
         var lesPaulStudio = new Guitar("Les Paul Studio", "D#", 11);
         var morello = new Guitar("Fender Tom Morello stratocaster", "Drop D", 9);
         guitars.Add(lesPaulStudio);
@@ -23,20 +23,27 @@
         skateboards.Add(kennyMcormak);
         skateboards.Add(cruiser);
 
-        // initialize vizualisation of data
+
+
+        // Start main app for visualizing data
         BrukerGrensesnitt.GetUI(guitars, skateboards, cameras);
     }
 
-    // print data from a specific generic item inventory
-    public static string Print<T>(Inventory<T> inventory)
+    // Prints data from a item inventory
+    // Uses Func<T, string> formatDetails to gather item specific data during call of method
+    public static string Print<T>(Inventory<T> inventory, string typeName, Func<T, string> formatDetails)
         where T : IInventoryItem
     {
-        var list = inventory.GetAll();
         string output = "";
-        foreach (var item in list)
-        {
-                output += $"Board name: {item.Name}\nId: {item.Id}\n";
-        }
+
+    foreach (var item in inventory.GetAll())
+    {
+        output += $"Type: {typeName}\n";
+        output += $"Name: {item.Name}\n";
+        output += $"ID: {item.Id}\n";
+        output += formatDetails(item);
+        output += "\n\n";
+    }
         return output;
     }
 }
